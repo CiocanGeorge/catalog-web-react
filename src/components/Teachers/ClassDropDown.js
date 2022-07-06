@@ -1,10 +1,10 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 const ClassDropDown = () => {
 
-    const [classDisplay,setClassDisplay]=useState([])
-   
-    
+    const [classDisplay, setClassDisplay] = useState([])
+
+
     useEffect(() => {
         (
             async () => {
@@ -16,28 +16,35 @@ const ClassDropDown = () => {
 
                 const content = await response.json();
                 setClassDisplay(content);
-                const test=classDisplay;
-                debugger;
-                
+
             }
         )();
     });
 
-  
-
-
-    return(
-        <select id="test" className="form-select" aria-label="Default select example" defaultValue="0" >
-            <option disabled value="0" >Choose Class...</option>
-            {
+    const displayClass = () => {
+        return (
+            <select id="test" className="form-select" aria-label="Default select example" defaultValue="0" >
+                <option disabled value="0" >Choose Class...</option>
+                {
 
                     classDisplay.map((option) => (
-                    <option >{option}</option>
-                ))
-            }
+                        <option value={option} key={option} >{option}</option>
+                    ))
+                }
 
 
-        </select>
+            </select >
+        );
+    }
+
+
+
+    return (
+       <div>
+        {
+            displayClass()
+        }
+       </div>
     );
 }
 
