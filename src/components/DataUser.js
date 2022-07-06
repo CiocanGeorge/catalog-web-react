@@ -1,21 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import Courses from './Courses';
+import ClassDropDown from './Teachers/ClassDropDown';
 
 const DataUser = (props) => {
     const [nameUser, setNameUser] = useState('');
     const [lastNameUser, setLastNameUser] = useState('');
     const [classUser, setClassUser] = useState('');
+    //din baza de date 1-2-3-4
     const [rolesUser, setRolesUser] = useState('');
+    //in functie de rol din baza de date 1-elev 2-profesor matematica
     const [rolesUserDisplay, setRolesUserDisplay] = useState('');
     const [emailUser, setEmailUser] = useState('');
 
 
     const rol = () => {
         if (rolesUser === 1) {
-            setRolesUserDisplay("Elev")
+            setRolesUserDisplay("Elev");
+           
+        }
+        if(rolesUser === 2)
+        {
+            setRolesUserDisplay("Profesor de Matematica");
         }
     }
 
+
+    const displayByRole=()=>{
+        if(rolesUserDisplay==="Elev")
+        {
+            return (
+                <Courses idLogin={props.idLogin} />
+            );
+        }
+        if(rolesUserDisplay==="Profesor de Matematica")
+        {
+            return(
+                <ClassDropDown />
+            );
+        }
+    }
 
 
     useEffect(() => {
@@ -41,7 +64,7 @@ const DataUser = (props) => {
         )();
     });
 
-
+   
    
 
 
@@ -71,8 +94,10 @@ const DataUser = (props) => {
 
             <p>Se populeaza select-ul din baza de date </p>
 
+           {
+            displayByRole()
+           }
             
-            <Courses idLogin={props.idLogin}/>
             {/*
             <form >
                 <div className="d-inline-flex p-1">
