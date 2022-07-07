@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import DisplayStudent from './DisplayStudent';
 
 const ClassDropDown = () => {
 
     const [classDisplay, setClassDisplay] = useState([])
     const [classId, setClassId] = useState("0");
-
+    const [isGrade,setIsGrade]=useState(false);
+    const [isAbsence,setIsAbsence]=useState(false);
 
     useEffect(() => {
         (
@@ -53,13 +55,17 @@ const ClassDropDown = () => {
                 classId !== "0"
                     ?
                     <div>
-                        <br></br>
-                        <button type="button" class="btn btn-primary">Note</button>
-                        <button type="button" class="btn btn-primary">Absente</button>
+                        <br/>
+                        <button type="button" class="btn btn-primary" onClick={()=>{setIsGrade(true);setIsAbsence(false)}}>Note</button>   
+                        <button type="button" class="btn btn-primary" onClick={()=>{setIsGrade(false);setIsAbsence(true)}}>Prezenta</button>
                     </div>
                     :
                     ""
             }
+            {
+                <DisplayStudent classId={classId} isGrade={isGrade} isAbsence={isAbsence}/>
+            }
+
 
         </div>
     );
