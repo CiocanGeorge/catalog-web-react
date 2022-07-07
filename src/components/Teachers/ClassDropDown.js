@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 const ClassDropDown = () => {
 
     const [classDisplay, setClassDisplay] = useState([])
+    const [classId, setClassId] = useState("0");
 
 
     useEffect(() => {
@@ -21,9 +22,15 @@ const ClassDropDown = () => {
         )();
     });
 
+    function selectClass() {
+        const sel = document.getElementById("test");
+        setClassId(sel.options[sel.selectedIndex].value);
+
+    }
+
     const displayClass = () => {
         return (
-            <select id="test" className="form-select" aria-label="Default select example" defaultValue="0" >
+            <select id="test" className="form-select" aria-label="Default select example" defaultValue="0" onChange={selectClass}>
                 <option disabled value="0" >Choose Class...</option>
                 {
 
@@ -31,8 +38,6 @@ const ClassDropDown = () => {
                         <option value={option} key={option} >{option}</option>
                     ))
                 }
-
-
             </select >
         );
     }
@@ -40,11 +45,23 @@ const ClassDropDown = () => {
 
 
     return (
-       <div>
-        {
-            displayClass()
-        }
-       </div>
+        <div>
+            {
+                displayClass()
+            }
+            {
+                classId !== "0"
+                    ?
+                    <div>
+                        <br></br>
+                        <button type="button" class="btn btn-primary">Note</button>
+                        <button type="button" class="btn btn-primary">Absente</button>
+                    </div>
+                    :
+                    ""
+            }
+
+        </div>
     );
 }
 

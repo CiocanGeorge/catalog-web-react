@@ -28,7 +28,7 @@ const Courses = (porps) => {
         )();
     })
 
-    function selectCourse(e) {
+    function selectCourse() {
         const sel=document.getElementById("test");
         setCoursIdSelect(sel.options[sel.selectedIndex].value);
         setCoursNameSelect(sel.options[sel.selectedIndex].text);
