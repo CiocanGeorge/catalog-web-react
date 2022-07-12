@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DisplayStudent from './DisplayStudent';
 
-const ClassDropDown = () => {
+const ClassDropDown = (props) => {
 
     const [classDisplay, setClassDisplay] = useState([])
     const [classId, setClassId] = useState("0");
@@ -63,7 +63,7 @@ const ClassDropDown = () => {
                     ""
             }
             {
-                <DisplayStudent classId={classId} isGrade={isGrade} isAbsence={isAbsence}/>
+                <DisplayStudent classId={classId} isGrade={isGrade} isAbsence={isAbsence} rolesUserDisplay={props.rolesUserDisplay}/>
             }
 
 

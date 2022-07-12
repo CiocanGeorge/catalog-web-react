@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Grades from './Grades';
 
 
-const Courses = (porps) => {
+const Courses = (props) => {
 
     const [responseCourses, setResponseCourses] = useState([]);
     const [coursNameSelect,setCoursNameSelect]=useState("");
@@ -14,7 +14,7 @@ const Courses = (porps) => {
     useEffect(() => {
         (
             async () => {
-                const response = await fetch("https://localhost:44374/api/UserInfo/getCoursesByUserID?id=" + porps.idLogin, {
+                const response = await fetch("https://localhost:44374/api/UserInfo/getCoursesByUserID?id=" + props.idLogin, {
                     method: 'GET',
                     headers: { 'Content-type': 'application/json' },
                     credentials: 'include',
@@ -54,7 +54,7 @@ const Courses = (porps) => {
 
                     </select>
                     <div className='Grades' style={displayGrades} >
-                        <Grades coursNameSelect={coursNameSelect} coursIdSelect={coursIdSelect} idLogin={porps.idLogin}/>
+                        <Grades coursNameSelect={coursNameSelect} coursIdSelect={coursIdSelect} idLogin={props.idLogin}/>
                     </div>
                 </div>
             )

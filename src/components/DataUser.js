@@ -13,6 +13,7 @@ const DataUser = (props) => {
     const [emailUser, setEmailUser] = useState('');
 
 
+
     const rol = () => {
         if (rolesUser === 1) {
             setRolesUserDisplay("Elev");
@@ -20,7 +21,7 @@ const DataUser = (props) => {
         }
         if(rolesUser === 2)
         {
-            setRolesUserDisplay("Profesor de Matematica");
+            setRolesUserDisplay("Matematica");
         }
     }
 
@@ -32,10 +33,10 @@ const DataUser = (props) => {
                 <Courses idLogin={props.idLogin} />
             );
         }
-        if(rolesUserDisplay==="Profesor de Matematica")
+        if(rolesUserDisplay==="Matematica")
         {
             return(
-                <ClassDropDown />
+                <ClassDropDown rolesUserDisplay={rolesUserDisplay} />
             );
         }
     }
